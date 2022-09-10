@@ -34,6 +34,8 @@ class ProductsModel {
 }
 
 class Datum {
+  var shop;
+
   Datum({
     required this.id,
     required this.isActive,
@@ -62,7 +64,7 @@ class Datum {
   int v;
   List<Product> products;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory Datum.fromJson(Map<dynamic, dynamic> json) => Datum(
         id: json["_id"],
         isActive: json["is_active"],
         createdAt: DateTime.parse(json["created_at"]),
@@ -78,7 +80,7 @@ class Datum {
             json["products"].map((x) => Product.fromJson(x))),
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<dynamic, dynamic> toJson() => {
         "_id": id,
         "is_active": isActive,
         "created_at": createdAt.toIso8601String(),
@@ -141,7 +143,7 @@ class Product {
   int v;
   bool inWishlist;
 
-  factory Product.fromJson(Map<String, dynamic> json) => Product(
+  factory Product.fromJson(Map<dynamic, dynamic> json) => Product(
         id: json["_id"],
         onSale: json["on_sale"],
         salePercent: json["sale_percent"],
@@ -201,7 +203,7 @@ class Image {
   String filename;
   String url;
 
-  factory Image.fromJson(Map<String, dynamic> json) => Image(
+  factory Image.fromJson(Map<dynamic, dynamic> json) => Image(
         id: json["_id"],
         filename: json["filename"],
         url: json["url"],
