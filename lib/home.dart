@@ -38,65 +38,64 @@ class _ListBuildState extends State<ListBuild> {
                   builder: ((context, snapshot) {
                     if (snapshot.hasData) {
                       return ListView.builder(
-                          itemCount: snapshot.data!.data.length,
-                          itemBuilder: ((context, index) {
-                            return Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ListTile(
-                                  title: Text(
-                                    snapshot.data!.data[index].shop.name
+                        itemCount: snapshot.data!.data.length,
+                        itemBuilder: ((context, index) {
+                          return Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ListTile(
+                                title: Text(
+                                  snapshot.data!.data[index].shop.name
+                                      .toString(),
+                                ),
+                                subtitle: Text(
+                                  snapshot.data!.data[index].shop.shopemail
+                                      .toString(),
+                                ),
+                                leading: CircleAvatar(
+                                  backgroundImage: NetworkImage(
+                                    snapshot.data!.data[index].shop.image
                                         .toString(),
-                                  ),
-                                  subtitle: Text(
-                                    snapshot.data!.data[index].shop.shopemail
-                                        .toString(),
-                                  ),
-                                  leading: CircleAvatar(
-                                    backgroundImage: NetworkImage(
-                                      snapshot.data!.data[index].shop.image
-                                          .toString(),
-                                    ),
                                   ),
                                 ),
-                                Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * .3,
-                                  width: MediaQuery.of(context).size.width * 1,
-                                  child: ListView.builder(
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount: snapshot
-                                          .data!.data[index].image.length,
-                                      itemBuilder: ((context, position) {
-                                        return Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Container(
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                  .25,
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  .5,
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(15),
-                                                  image: DecorationImage(
-                                                    fit: BoxFit.cover,
-                                                    image: NetworkImage(snapshot
-                                                        .data!
-                                                        .data[index]
-                                                        .image[position]
-                                                        .toString()),
-                                                  ))),
-                                        );
-                                      })),
-                                )
-                              ],
-                            );
-                          }));
+                              ),
+                              Container(
+                                height: MediaQuery.of(context).size.height * .3,
+                                width: MediaQuery.of(context).size.width * 1,
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount:
+                                      snapshot.data!.data[index].image.length,
+                                  itemBuilder: ((context, position) {
+                                    return Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Container(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                .25,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                .5,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: NetworkImage(snapshot.data!
+                                                .data[index].image[position]
+                                                .toString()),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }),
+                                ),
+                              )
+                            ],
+                          );
+                        }),
+                      );
                     } else {
                       return const Text('Loading');
                     }
